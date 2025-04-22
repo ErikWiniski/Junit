@@ -7,8 +7,6 @@ import org.junit.Test;
 
 public class StringHelperTestComplete {
 
-	// AACD => CD ACD => CD CDEF=>CDEF CDAA => CDAA
-
 	StringHelper helper;
 
 	@Before
@@ -16,6 +14,7 @@ public class StringHelperTestComplete {
 		helper = new StringHelper();
 	}
 
+	// AACD => CD ACD => CD CDEF=>CDEF CDAA => CDAA
 
 	@Test
 	public void testTruncateAInFirst2Positions_AinFirst2Positions() {
@@ -25,6 +24,16 @@ public class StringHelperTestComplete {
 	@Test
 	public void testTruncateAInFirst2Positions_AinFirstPosition() {
 		assertEquals("CD", helper.truncateAInFirst2Positions("ACD"));
+	}
+
+	@Test
+	public void testTruncateAInFirst2Positions_NothingChanged() {
+		assertEquals("CDEF", helper.truncateAInFirst2Positions("CDEF"));
+	}
+
+	@Test
+	public void testTruncateAInFirst2Positions_AInLastTwoPositions() {
+		assertEquals("CDAA", helper.truncateAInFirst2Positions("CDAA"));
 	}
 
 	// ABCD => false, ABAB => true, AB => true, A => false
@@ -38,6 +47,18 @@ public class StringHelperTestComplete {
 	public void testAreFirstAndLastTwoCharactersTheSame_BasicPositiveScenario() {
 		assertTrue( 
 				helper.areFirstAndLastTwoCharactersTheSame("ABAB"));
+	}
+
+	@Test
+	public void testAreFirstAndLastTwoCharactersTheSame_TwoCharacterPositive() {
+		assertTrue( 
+				helper.areFirstAndLastTwoCharactersTheSame("AB"));
+	}
+
+	@Test
+	public void testAreFirstAndLastTwoCharactersTheSame_OneCharacterNegative() {
+		assertFalse( 
+				helper.areFirstAndLastTwoCharactersTheSame("A"));
 	}
 
 
